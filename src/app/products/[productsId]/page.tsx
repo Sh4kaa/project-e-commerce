@@ -1,5 +1,6 @@
 import getProduct from "@/api/getProduct";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Params = {
@@ -13,18 +14,18 @@ export default async function Product({ params: { productsId } }: Params) {
   console.log(productsId);
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 place-items-end mx-4">
-        <div>
-          <h1 className="text-center font-bold">{product.title}</h1>
-          <p>{product.description}</p>
-          <p className="text-4xl font-bold">{product.price}</p>
-        </div>
+      <div className="grid grid-cols-1 gap-3 place-items-center md:grid-cols-2 md:place-items-center">
         <Image
           src={product.image}
-          width={200}
-          height={200}
+          width={400}
+          height={400}
           alt={product.category}
         />
+        <div className="flex flex-col px-6">
+          <h1 className="text-center font-bold">{product.title}</h1>
+          <p>{product.description}</p>
+          <p className="text-4xl font-bold text-center mt-5">R$ {product.price}</p>
+        </div>        
       </div>
     </>
   );
