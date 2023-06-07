@@ -7,7 +7,6 @@ export default async function Products() {
   const products = await getData();
   return (
     <>
-      <Link href="/">Go back Home</Link>
       <ul className="flex flex-wrap gap-2 justify-center">
         {products.map((prod) => (
           <li key={prod.id}>

@@ -9,7 +9,7 @@ export default function ProductDetails({ children }: { children: ReactNode }) {
     <div className="max-w-5xl mx-auto px-10 flex flex-col items-center mt-32">
       {children}
       <Link className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white" href={"/products"}>
-        Voltar para Home
+        Continuar comprando
       </Link>
     </div>
   );
