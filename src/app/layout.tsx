@@ -39,7 +39,7 @@ export default function RootLayout({
             </ul>
           </div>
         </header>
-        <main className="w-1/2 mx-auto">{children}</main>
+        {children}
       </body>
     </html>
   );

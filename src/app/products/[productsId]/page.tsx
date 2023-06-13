@@ -24,8 +24,17 @@ export default async function Product({ params: { productsId } }: Params) {
         <div className="flex flex-col px-6">
           <h1 className="text-center font-bold">{product.title}</h1>
           <p>{product.description}</p>
-          <p className="text-4xl font-bold text-center mt-5">R$ {product.price}</p>
-        </div>        
+          <p className="text-4xl font-bold text-center mt-5">
+            R$ {product.price}
+          </p>
+          <button className="py-2 px-4 rounded bg-red-500">Comprar</button>
+        </div>
+      <Link
+        className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white mx-auto col-span-2"
+        href={"/products"}
+      >
+        Continuar comprando
+      </Link>
       </div>
     </>
   );
