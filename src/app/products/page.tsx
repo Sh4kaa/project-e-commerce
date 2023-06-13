@@ -3,6 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: 'Produtos',
+  description: 'Página de produtos'
+}
+
 export default async function Products() {
   const products = await getData();
   return (

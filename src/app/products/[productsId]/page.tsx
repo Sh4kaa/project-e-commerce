@@ -8,6 +8,10 @@ type Params = {
     productsId: string;
   };
 };
+export const metadata = {
+  title: "Produto",
+  description: "Página de produtos",
+};
 
 export default async function Product({ params: { productsId } }: Params) {
   const product = await getProduct(productsId);
