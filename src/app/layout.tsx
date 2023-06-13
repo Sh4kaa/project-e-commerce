@@ -23,23 +23,41 @@ export default function RootLayout({
             <Link href="/">Mercado do Zé</Link>
             <ul className="flex gap-4">
               <li>
-                <Link className="block py-2 px-4 hover:bg-white hover:rounded duration-300" href="/">Home</Link>
+                <Link
+                  className="block py-2 px-4 hover:bg-white hover:rounded duration-300"
+                  href="/"
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <Link className="block py-2 px-4 hover:bg-white hover:rounded duration-300" href="/products">Produtos</Link>
+                <Link
+                  className="block py-2 px-4 hover:bg-white hover:rounded duration-300"
+                  href="/products"
+                >
+                  Produtos
+                </Link>
               </li>
               <li>
-                <Link className="block py-2 px-4 hover:bg-white hover:rounded duration-300" href="#">Sobre</Link>
+                <Link
+                  className="block py-2 px-4 hover:bg-white hover:rounded duration-300"
+                  href="#"
+                >
+                  Sobre
+                </Link>
               </li>
               <li>
-                <Link className="block py-2 px-4 hover:bg-white hover:rounded duration-300" href="#">
+                <Link
+                  className="block py-2 px-4 hover:bg-white hover:rounded duration-300"
+                  href="#"
+                >
                   <Cart />
                 </Link>
               </li>
             </ul>
           </div>
         </header>
-        {children}
+        <main className="w-2/3 mx-auto">{children}</main>
       </body>
     </html>
   );

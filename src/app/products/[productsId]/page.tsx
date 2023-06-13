@@ -29,12 +29,12 @@ export default async function Product({ params: { productsId } }: Params) {
           </p>
           <button className="py-2 px-4 rounded bg-red-500">Comprar</button>
         </div>
-      <Link
-        className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white mx-auto col-span-2"
-        href={"/products"}
-      >
-        Continuar comprando
-      </Link>
+        <Link
+          className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white mx-auto col-span-2"
+          href={"/products"}
+        >
+          Continuar comprando
+        </Link>
       </div>
     </>
   );
