@@ -1,4 +1,4 @@
-export type FetchProducts = {
+export type TypeProducts = {
   id: number;
   title: string;
   price: number;

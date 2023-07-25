@@ -1,4 +1,4 @@
-import { FetchProducts } from "@/types/prods";
+import { TypeProducts } from "@/types/prods";
 
 
 export default async function getProduct(productId: string) {
@@ -6,6 +6,6 @@ export default async function getProduct(productId: string) {
     `https://fakestoreapi.com/products/${productId}`
   );
   if (!response.ok) throw new Error("Não foi possível encontrar os dados");
-  const jsonResponse: FetchProducts = await response.json();
+  const jsonResponse: TypeProducts = await response.json();
   return jsonResponse;
 }
