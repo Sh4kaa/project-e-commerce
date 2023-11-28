@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import Header from "./components/Header";
-import { PurchasedProductsContext } from "@/contexts/cart-context";
+import { PurchasedProductsProvider } from "@/contexts/cart-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} pt-20`}>
-        <PurchasedProductsContext>
-
+        <PurchasedProductsProvider>
           <Header />
           <main className="max-w-screen-xl mx-auto flex flex-col items-center">
             {children}
           </main>
-        </PurchasedProductsContext>
+        </PurchasedProductsProvider>
       </body>
     </html>
   );

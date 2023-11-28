@@ -1,6 +1,6 @@
 'use client'
 import { TypeProducts } from "@/types/prods";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 type ContextProps = {
   addToCart: (product: TypeProducts) => void
@@ -19,7 +19,15 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
     let newListProduct = productPurchased.filter(product => product.id !== id)
     productPurchased = newListProduct
   }
-  <PurchasedProductsContext.Provider value={{ addToCart }}>
-    {children}
-  </PurchasedProductsContext.Provider>
+  return (
+    <PurchasedProductsContext.Provider value={{ addToCart }}>
+      {children}
+    </PurchasedProductsContext.Provider>
+  )
 }
+
+export const usePurchaseProducts = () => {
+  const context = useContext(PurchasedProductsContext)
+  return context
+}
+
