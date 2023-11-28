@@ -1,34 +1,36 @@
 'use client'
 import { TypeProducts } from "@/types/prods";
-import { createContext, useContext } from "react";
+
+import { createContext, useContext, useState } from "react";
+
+
 
 type ContextProps = {
   addToCart: (product: TypeProducts) => void
+  removeToCart: (id: number) => void
 }
 
-export const PurchasedProductsContext = createContext({} as ContextProps)
+const PurchasedProductsContext = createContext({} as ContextProps)
 
 export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  let productPurchased: TypeProducts[] = [];
+  const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([])
+
 
   function addToCart(product: TypeProducts) {
-    productPurchased.push(product)
+    setPurchasedProducts([...purchasedProducts, product])
     console.log('produto adicionado ao carrinho')
   }
 
   function removeToCart(id: number) {
-    let newListProduct = productPurchased.filter(product => product.id !== id)
-    productPurchased = newListProduct
+    const newListProduct = purchasedProducts.filter(product => product.id !== id)
+    setPurchasedProducts(newListProduct)
+    console.log(purchasedProducts)
   }
   return (
-    <PurchasedProductsContext.Provider value={{ addToCart }}>
+    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart }}>
       {children}
     </PurchasedProductsContext.Provider>
   )
 }
 
-export const usePurchaseProducts = () => {
-  const context = useContext(PurchasedProductsContext)
-  return context
-}
-
+export const useProductContext = () => useContext(PurchasedProductsContext)

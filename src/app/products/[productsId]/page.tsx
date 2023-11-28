@@ -1,4 +1,7 @@
+'use client'
 import getProduct from "@/api/getProduct";
+import { useProductContext } from "@/contexts/cart-context";
+import { TypeProducts } from "@/types/prods";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,16 +11,18 @@ type Params = {
     productsId: string;
   };
 };
-export const metadata = {
-  title: "Produto",
-  description: "Página de produtos",
-};
+
 
 export default async function Product({ params: { productsId } }: Params) {
+  const { addToCart } = useProductContext()
   const product = await getProduct(productsId);
 
   console.log(productsId);
   console.log(product)
+
+  function sale(product: TypeProducts) {
+    addToCart(product)
+  }
   return (
     <>
       <div className="grid grid-cols-1 gap-3 place-items-center md:grid-cols-2 md:place-items-center">
@@ -33,7 +38,7 @@ export default async function Product({ params: { productsId } }: Params) {
           <p className="text-4xl font-bold text-center mt-5">
             R$ {product.price}
           </p>
-          <button className="py-2 px-4 rounded bg-red-500">Comprar</button>
+          <button className="py-2 px-4 rounded bg-red-500" onClick={() => sale(product)}>Comprar</button>
         </div>
         <Link
           className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white mx-auto col-span-2"

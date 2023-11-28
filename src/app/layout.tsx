@@ -3,14 +3,11 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import Header from "./components/Header";
-import { Providers } from "@/providers/provider";
+import { PurchasedProductsProvider } from "@/contexts/cart-context";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Home",
-  description: "home de produtos",
-};
 
 export default function RootLayout({
   children,
@@ -20,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} pt-20`}>
-        <Providers>
+        <PurchasedProductsProvider>
           <Header />
           <main className="max-w-screen-xl mx-auto flex flex-col items-center">
             {children}
           </main>
-        </Providers>
+        </PurchasedProductsProvider>
       </body>
     </html>
   );
