@@ -13,6 +13,7 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
 
   function addToCart(product: TypeProducts) {
     productPurchased.push(product)
+    console.log('produto adicionado ao carrinho')
   }
 
   function removeToCart(id: number) {
