@@ -15,7 +15,9 @@ export const metadata = {
 
 export default async function Product({ params: { productsId } }: Params) {
   const product = await getProduct(productsId);
+
   console.log(productsId);
+  console.log(product)
   return (
     <>
       <div className="grid grid-cols-1 gap-3 place-items-center md:grid-cols-2 md:place-items-center">
