@@ -16,7 +16,7 @@ export default function Cart() {
       {purchasedProducts.map(prod => (
         <div key={prod.id} className='border-[2px] p-2 border-slate-700 rounded-md h-28 w-96 mb-2'>
           <h1>{prod.title}</h1>
-          <span className='block'>{prod.price}</span>
+          <span className='block'>{converterBRL(prod.price)}</span>
           <button className='bg-fuchsia-600 hover:bg-red-600 text-white px-2 py-1 rounded-md' onClick={() => removeToCart(prod.id)}>Deletar</button>
         </div>
       ))}
