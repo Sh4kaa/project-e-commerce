@@ -1,5 +1,11 @@
 import getProduct from "@/api/getProduct";
 import ProductDetails from "@/app/components/ProductDetails";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: 'Produto detalhes ❤️'
+}
 
 type Params = {
   params: {

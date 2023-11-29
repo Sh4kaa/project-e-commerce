@@ -9,7 +9,7 @@ export default function Cart() {
   }
   return (
     <>
-      {purchasedProducts && purchasedProducts.map(prod => (
+      {purchasedProducts.map(prod => (
         <div key={prod.id} className='border-[2px] border-slate-700 rounded-md h-28 w-96 mb-2'>
           <h1>{prod.title}</h1>
           <span>{prod.price}</span>

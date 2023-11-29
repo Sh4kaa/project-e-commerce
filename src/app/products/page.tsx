@@ -5,7 +5,7 @@ import React, { Suspense } from "react";
 import Product from "../components/Product";
 
 export const metadata = {
-  title: 'Produtos',
+  title: 'Produtos 👌',
   description: 'Página de produtos'
 }
 
