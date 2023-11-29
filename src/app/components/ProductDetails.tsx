@@ -3,6 +3,7 @@ import { useProductContext } from '@/contexts/cart-context'
 import { TypeProducts } from '@/types/prods'
 import Image from 'next/image'
 import Link from 'next/link'
+import { converterBRL } from '../utils/currencyConverter'
 
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
@@ -22,7 +23,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
         <h1 className="text-center font-bold">{product.title}</h1>
         <p>{product.description}</p>
         <p className="text-4xl font-bold text-center mt-5">
-          R$ {product.price}
+          {converterBRL(product.price)}
         </p>
         <button className="py-2 px-4 rounded bg-red-500" onClick={() => sale(product)}>Comprar</button>
       </div>

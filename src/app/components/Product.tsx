@@ -3,6 +3,7 @@ import React, { ChangeEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
+import { converterBRL } from "../utils/currencyConverter";
 
 type Props = {
   children: TypeProducts[];
@@ -49,8 +50,7 @@ export default function Product({ children }: Props) {
                     {prod.description}
                   </p>
                   <p className="flex items-center justify-center gap-2">
-                    <span className="text-lg font-semibold">R$</span>{" "}
-                    <span className="text-3xl font-bold">{prod.price}</span>
+                    <span className="text-3xl font-bold">{converterBRL(prod.price)}</span>
                   </p>
                   <button className="rounded bg-green-500 py-2 font-bold transition group-hover:text-green-500 group-hover:bg-white">
                     COMPRAR
