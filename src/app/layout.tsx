@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={`${inter.className} pt-20`}>
         <PurchasedProductsProvider>
           <Header />
-          <main className="max-w-screen-xl mx-auto flex flex-col items-center">
+          <main className="max-w-screen-xl mx-auto flex flex-col px-6">
             {children}
           </main>
         </PurchasedProductsProvider>

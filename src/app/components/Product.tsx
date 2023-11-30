@@ -22,12 +22,14 @@ export default function Product({ children }: Props) {
 
   return (
     <>
+
       <input
         className="border"
         type="text"
         value={inputSearch}
         onChange={handleChange}
       />
+
 
       <ul className="flex flex-wrap gap-2 justify-center">
         {filteredListProducts.map((prod) => (
@@ -61,6 +63,7 @@ export default function Product({ children }: Props) {
           </li>
         ))}
       </ul>
+
     </>
   );
 }
