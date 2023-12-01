@@ -1,5 +1,6 @@
 "use client";
 import React, { ChangeEvent } from "react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
@@ -22,13 +23,18 @@ export default function Product({ children }: Props) {
 
   return (
     <>
-
-      <input
-        className="border"
-        type="text"
-        value={inputSearch}
-        onChange={handleChange}
-      />
+      <div className="flex gap-2 items-center justify-center mx-auto">
+        <input
+          className="border border-black w-96 mx-auto pl-2 py-1 my-8 rounded-md"
+          type="text"
+          value={inputSearch}
+          onChange={handleChange}
+          placeholder="Pesquise seu produto"
+        />
+        <div className="bg-blue-600 p-1 rounded-md">
+          <Search className="text-white" />
+        </div>
+      </div>
 
 
       <ul className="flex flex-wrap gap-2 justify-center">

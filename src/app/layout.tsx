@@ -16,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={`${inter.className} pt-20`}>
+      <body className={`${inter.className} pt-20 bg-slate-200`}>
         <PurchasedProductsProvider>
           <Header />
-          <main className="max-w-screen-xl mx-auto flex flex-col px-6">
+          <main className="max-w-screen-xl mx-auto flex flex-col px-6 items-center justify-center h-[calc(100vh_-_(80px_+_144px))]">
             {children}
           </main>
         </PurchasedProductsProvider>

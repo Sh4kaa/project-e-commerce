@@ -12,30 +12,39 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
     addToCart(product)
   }
   return (
-    <div className='h-[calc(100vh_-_144px)] flex items-center justify-center'>
-      <div className="grid grid-cols-1 gap-3 place-items-center md:grid-cols-2 md:place-items-center h-max">
+
+    <div className="border-[2px] border-black p-4 rounded-md">
+      <div className='flex gap-6 items-center justify-center'>
         <Image
           src={product.image}
           width={400}
           height={400}
           alt={product.category}
+          className='rounded'
         />
-        <div className="flex flex-col px-6">
+        <div className="flex flex-col">
           <h1 className="text-center font-bold">{product.title}</h1>
           <p>{product.description}</p>
           <p className="text-4xl font-bold text-center mt-5">
             {converterBRL(product.price)}
           </p>
-          <button className="py-2 px-4 rounded bg-red-500" onClick={() => sale(product)}>Comprar</button>
+          <button className="py-2 px-4 rounded bg-red-500
+            mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
+            duration-500" onClick={() => sale(product)}>
+            Comprar
+          </button>
         </div>
-        <Link
-          className="bg-red-500 py-2 px-4 rounded text-center w-40 mt-9 text-white mx-auto col-span-2"
-          href={"/products"}
-        >
-          Continuar comprando
-        </Link>
       </div>
+
+
+      <Link
+        className="block bg-red-500 py-2 px-4 mt-9 w-max mx-auto rounded text-center text-white font-semibold hover:text-black duration-500"
+        href={"/products"}
+      >
+        Continuar comprando
+      </Link>
     </div>
+
 
   )
 }
