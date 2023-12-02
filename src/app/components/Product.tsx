@@ -23,7 +23,7 @@ export default function Product({ children }: Props) {
 
   return (
     <>
-      <div className="flex gap-2 items-center justify-center mx-auto">
+      <div className="flex gap-2 items-center mx-auto">
         <input
           className="border border-black w-96 mx-auto pl-2 py-1 my-8 rounded-md"
           type="text"
