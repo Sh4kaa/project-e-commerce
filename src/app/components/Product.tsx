@@ -23,9 +23,9 @@ export default function Product({ children }: Props) {
 
   return (
     <>
-      <div className="flex gap-2 items-center mx-auto">
+      <div className="border flex gap-2 items-center mx-auto max-w-[900px] justify-center">
         <input
-          className="border border-black w-96 mx-auto pl-2 py-1 my-8 rounded-md"
+          className="border border-black mx-auto pl-2 py-1 my-8 rounded-md md:w-[400px]"
           type="text"
           value={inputSearch}
           onChange={handleChange}
