@@ -10,7 +10,7 @@ export default function Cart() {
   const sum = converterBRL(total)
 
   if (!purchasedProducts.length) {
-    return <p>Carrinho vazio</p>
+    return <p className='text-center'>Carrinho vazio 😥</p>
   }
   return (
     <>

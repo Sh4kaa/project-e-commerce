@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import { PurchasedProductsProvider } from "@/contexts/cart-context";
 
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
 
 
 export default function RootLayout({
