@@ -15,8 +15,13 @@ export default function Nav() {
   }
   return (
     <nav>
-      {menu ? <X className='cursor-pointer text-white relative sm:hidden' onClick={isMenu} /> : <Menu className='cursor-pointer text-white relative sm:hidden' onClick={isMenu} />}
-      <ul className={`${menu ? 'opacity-100 duration-700' : 'max-[640px]:opacity-0 right-[-100%] duration-700'} flex flex-col w-[70%] bg-blue-600 rounded absolute z-50 right-0 p-4 top-14 gap-3 sm:flex-row sm:static sm:p-0`}>
+      {
+        menu ?
+          <X className='cursor-pointer text-white relative sm:hidden' onClick={isMenu} />
+          :
+          <Menu className='cursor-pointer text-white relative sm:hidden' onClick={isMenu} />
+      }
+      <ul className={`${menu ? 'opacity-100 duration-700' : 'max-[640px]:opacity-0 right-[-100%] duration-700'} max-[640px]:h-[calc(70vh_-_4rem)] max-[640px]:rounded flex flex-col w-[70%] bg-blue-600 absolute top-14 z-50 right-0 p-4 gap-3 sm:flex-row sm:static sm:p-0`}>
         <li >
           <ActiveLink href='/'>
             Home
@@ -34,7 +39,7 @@ export default function Nav() {
         </li>
         <li >
           <Link
-            className="flex py-2 px-4 hover:bg-white hover:rounded duration-300 relative justify-center"
+            className="flex relative py-2 px-4 hover:bg-white rounded duration-300"
             href="/cart"
           >
             <ShoppingCart />

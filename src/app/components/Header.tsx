@@ -1,7 +1,4 @@
 import Link from 'next/link'
-import { ShoppingCart } from 'lucide-react'
-import CartCount from './CartCount'
-import { Menu } from 'lucide-react'
 import Nav from './Nav'
 
 export default function Header() {
