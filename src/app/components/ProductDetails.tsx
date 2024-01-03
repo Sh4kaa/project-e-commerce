@@ -4,10 +4,12 @@ import { TypeProducts } from '@/types/prods'
 import Image from 'next/image'
 import Link from 'next/link'
 import { converterBRL } from '../utils/currencyConverter'
+import { useEffect } from 'react'
 
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
-  const { addToCart } = useProductContext()
+  const { addToCart, productCart } = useProductContext()
+
   function sale(product: TypeProducts) {
     addToCart(product)
   }
@@ -28,11 +30,19 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
           <p className="text-4xl font-bold text-center mt-5">
             {converterBRL(product.price)}
           </p>
-          <button className="py-2 px-4 rounded bg-red-500
+          {productCart ? (
+            <button className="py-2 px-4 rounded bg-red-500/50 text-white cursor-not-allowed
             mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
             duration-500" onClick={() => sale(product)}>
-            Comprar
-          </button>
+              Produto já foi adicionado ao carrinho
+            </button>
+          ) : (
+            <button className="py-2 px-4 rounded bg-red-500
+            mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
+            duration-500" onClick={() => sale(product)}>
+              Comprar
+            </button>
+          )}
         </div>
       </div>
 
