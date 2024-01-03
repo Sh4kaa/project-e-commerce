@@ -1,5 +1,5 @@
 'use client'
-import { useProductContext } from '@/contexts/cart-context'
+import { useProductContext } from '@/contexts/CartContext'
 import React from 'react'
 
 export default function CartCount() {

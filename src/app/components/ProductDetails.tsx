@@ -1,10 +1,10 @@
 "use client"
-import { useProductContext } from '@/contexts/cart-context'
+import { useProductContext } from '@/contexts/CartContext'
 import { TypeProducts } from '@/types/prods'
 import Image from 'next/image'
 import Link from 'next/link'
 import { converterBRL } from '../utils/currencyConverter'
-import { useEffect } from 'react'
+
 
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {

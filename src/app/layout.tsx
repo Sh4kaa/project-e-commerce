@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import Header from "./components/Header";
-import { PurchasedProductsProvider } from "@/contexts/cart-context";
+import { PurchasedProductsProvider } from "@/contexts/CartContext";
 
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });

@@ -1,5 +1,5 @@
 "use client"
-import { useProductContext } from '@/contexts/cart-context'
+import { useProductContext } from '@/contexts/CartContext'
 import { Trash2 } from 'lucide-react';
 import React from 'react'
 import { converterBRL } from '../utils/currencyConverter'
