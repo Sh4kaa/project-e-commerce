@@ -13,19 +13,19 @@ export default function Cart() {
     return <p className='text-center'>Carrinho vazio 😥</p>
   }
   return (
-    <>
+    <section className='mx-auto'>
       {purchasedProducts.map(prod => (
-        <div key={prod.id} className='border-[2px] p-2 border-slate-700 rounded-md h-28 w-96 mb-2'>
+        <div key={prod.id} className='border-[2px] p-2 border-slate-700 rounded-md h-28 w-64 sm:w-96 mb-2 flex flex-col justify-between'>
           <h1>{prod.title}</h1>
-          <span className='block'>{converterBRL(prod.price)}</span>
-          <div className='bg-fuchsia-500 text-white p-2 rounded max-w-max hover:bg-red-600 duration-500 cursor-pointer' onClick={() => removeToCart(prod.id)}>
-            <Trash2 />
+          <div className='flex justify-between'>
+            <span className='block font-semibold text-3xl items-center'>{converterBRL(prod.price)}</span>
+            <div className='bg-fuchsia-500 text-white p-2 rounded max-w-max hover:bg-red-600 duration-500 cursor-pointer' onClick={() => removeToCart(prod.id)}>
+              <Trash2 />
+            </div>
           </div>
-
         </div>
       ))}
-
       <span><strong>Total:</strong>{sum}</span>
-    </>
+    </section>
   )
 }
