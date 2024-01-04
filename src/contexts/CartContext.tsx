@@ -6,18 +6,17 @@ import { createContext, useContext, useState } from "react";
 
 
 type ContextProps = {
-  addToCart: (product: TypeProducts) => void
+  addToCart: (product: TypeProducts) => boolean
   removeToCart: (id: number) => void
   purchasedProducts: TypeProducts[]
   countProduct: number
-  productCart: boolean
 }
 
 const PurchasedProductsContext = createContext({} as ContextProps)
 
 export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([])
-  const [productCart, setProductCart] = useState(false)
+
 
 
 
@@ -25,10 +24,10 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
   function addToCart(product: TypeProducts) {
     const isProductInCart = purchasedProducts.some(prod => prod.id === product.id);
     if (isProductInCart) {
-      setProductCart(true)
+      return true
     } else {
       setPurchasedProducts([...purchasedProducts, product])
-      setProductCart(false)
+      return false
     }
   }
 
@@ -38,7 +37,7 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
     console.log(purchasedProducts)
   }
   return (
-    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct, productCart }}>
+    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct }}>
       {children}
     </PurchasedProductsContext.Provider>
   )
