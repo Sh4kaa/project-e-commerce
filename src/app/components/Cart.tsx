@@ -1,11 +1,19 @@
 "use client"
 import { useProductContext } from '@/contexts/CartContext'
 import { Trash2 } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { converterBRL } from '../utils/currencyConverter'
 
 export default function Cart() {
-  const [quantities, setQuantities] = useState<{ [id: number]: number }>({})
+  const [quantities, setQuantities] = useState<{ [id: number]: number }>(() => {
+    const localQuantity = localStorage.getItem('quantity');
+    return localQuantity ? JSON.parse(localQuantity) : {}
+  })
+
+  useEffect(() => {
+    localStorage.setItem('quantity', JSON.stringify(quantities))
+  }, [quantities])
+
   const { purchasedProducts, removeToCart } = useProductContext()
   const total = purchasedProducts.reduce((acc, prod) => {
     const quantity = quantities[prod.id] || 1
