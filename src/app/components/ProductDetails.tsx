@@ -39,7 +39,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
               <button className="py-2 px-4 rounded bg-red-500/50 text-white cursor-not-allowed
             mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
             duration-500" onClick={() => sale(product)}>
-                Produto adicionado ao carrinho
+                Você já adicionou esse item
               </button>
             ) : (
               <button className="py-2 px-4 rounded bg-red-500
