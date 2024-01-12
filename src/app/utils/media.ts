@@ -14,8 +14,5 @@ export default function useMedia(media: string) {
       window.removeEventListener('resize', changeMatch)
     }
   }, [media])
-
-
   return match
-
 }
