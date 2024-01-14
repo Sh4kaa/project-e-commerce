@@ -3,16 +3,22 @@ import { useProductContext } from '@/contexts/CartContext'
 import { Trash2 } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { converterBRL } from '../utils/currencyConverter'
+import useLocalStorage from '../utils/useLocalStorage';
+
+type Quantities = {
+  [key: number]: number;
+}
 
 export default function Cart() {
-  const [quantities, setQuantities] = useState<{ [id: number]: number }>(() => {
-    const localQuantity = localStorage.getItem('quantity');
-    return localQuantity ? JSON.parse(localQuantity) : {}
+  const { getItem, setItem } = useLocalStorage('quantity')
+  const [quantities, setQuantities] = useState<Quantities>(() => {
+    const data = getItem()
+    return data
   })
 
   useEffect(() => {
-    localStorage.setItem('quantity', JSON.stringify(quantities))
-  }, [quantities])
+    setItem(quantities)
+  }, [setItem, quantities])
 
   const { purchasedProducts, removeToCart } = useProductContext()
   const total = purchasedProducts.reduce((acc, prod) => {
