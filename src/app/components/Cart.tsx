@@ -38,27 +38,25 @@ export default function Cart() {
   return (
     <section className='mx-auto'>
       {purchasedProducts.map(prod => (
-        <div key={prod.id} className='border-[2px] p-2 border-slate-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between'>
+        <div key={prod.id} className='border-[2px] p-2 border-blue-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between'>
           <h1>{prod.title}</h1>
-          <div className='flex justify-between'>
+          <div className='flex justify-between items-center'>
             <span className='block font-semibold text-3xl items-center'>{converterBRL(prod.price)}</span>
             <input
               type="number"
               min={1}
-              className='w-8 h-8 rounded'
+              className='w-9 h-8 rounded px-1'
               value={quantities[prod.id] || 1}
               onChange={(e) => handleQuantityChange(prod.id, +(e.target.value))}
             />
-            <div
-              className='bg-fuchsia-500 text-white p-2 rounded max-w-max hover:bg-red-600 duration-500 cursor-pointer'
+            <Trash2 width={30}
+              className='text-black rounded hover:text-red-600 cursor-pointer hover:animate-pulse'
               onClick={() => removeToCart(prod.id)}
-            >
-              <Trash2 />
-            </div>
+            />
           </div>
         </div>
       ))}
-      <span><strong>Total:</strong>{sum}</span>
+      <span className='text-xl font-semibold'><strong>Total: </strong>{sum}</span>
     </section>
   )
 }
