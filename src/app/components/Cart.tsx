@@ -10,11 +10,8 @@ type Quantities = {
 }
 
 export default function Cart() {
-  const { getItem, setItem } = useLocalStorage('quantity')
-  const [quantities, setQuantities] = useState<Quantities>(() => {
-    const data = getItem()
-    return data
-  })
+  const { getLocalData, setItem } = useLocalStorage('quantity')
+  const [quantities, setQuantities] = useState<Quantities>(() => getLocalData())
 
   useEffect(() => {
     setItem(quantities)
@@ -35,6 +32,7 @@ export default function Cart() {
   if (!purchasedProducts.length) {
     return <p className='text-center'>Carrinho vazio 😥</p>
   }
+
   return (
     <section className='mx-auto'>
       {purchasedProducts.map(prod => (
@@ -42,13 +40,16 @@ export default function Cart() {
           <h1>{prod.title}</h1>
           <div className='flex justify-between items-center'>
             <span className='block font-semibold text-3xl items-center'>{converterBRL(prod.price)}</span>
-            <input
-              type="number"
-              min={1}
-              className='w-9 h-8 rounded px-1'
-              value={quantities[prod.id] || 1}
-              onChange={(e) => handleQuantityChange(prod.id, +(e.target.value))}
-            />
+            <div>
+              <span>Quant: </span>
+              <input
+                type="number"
+                min={1}
+                className='w-9 h-8 rounded px-1'
+                value={quantities[prod.id] || 1}
+                onChange={(e) => handleQuantityChange(prod.id, +(e.target.value))}
+              />
+            </div>
             <Trash2 width={30}
               className='text-black rounded hover:text-red-600 cursor-pointer hover:animate-pulse'
               onClick={() => removeToCart(prod.id)}
