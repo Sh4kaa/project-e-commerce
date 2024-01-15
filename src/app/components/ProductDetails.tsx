@@ -20,7 +20,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
   }
   return (
     <section className='h-[calc(100vh_-_4rem)] flex items-center'>
-      <div className="border-[2px] border-black p-4 rounded-md max-w-3xl mx-auto">
+      <div className="bg-slate-700 p-4 rounded-md max-w-3xl mx-auto">
         <div className='flex gap-6 max-[600px]:flex-col items-center justify-center'>
           <Image
             src={product.image}

@@ -12,7 +12,7 @@ export default function ActiveLink({ href, children, ...rest }: ActiveLinkProps)
   return (
     <>
       <Link href={href} {...rest}
-        className={isActive ? 'bg-blue-200 block py-2 px-4 hover:bg-white hover:rounded duration-300 font-bold rounded' : 'block py-2 px-4 hover:bg-white hover:rounded duration-300'}>
+        className={isActive ? 'bg-red-500 block py-2 px-4 hover:bg-white hover:rounded duration-300 font-bold rounded' : 'block py-2 px-4 hover:bg-white hover:rounded duration-300'}>
         {children}
       </Link>
     </>

@@ -60,7 +60,7 @@ export default function Product({ children }: Props) {
                   <p className="flex items-center justify-center gap-2">
                     <span className="text-3xl font-bold">{converterBRL(prod.price)}</span>
                   </p>
-                  <button className="rounded bg-black py-2 font-bold transition group-hover:text-green-500 group-hover:bg-white">
+                  <button className="rounded bg-red-500 py-2 font-bold transition group-hover:text-black group-hover:bg-white">
                     COMPRAR
                   </button>
                 </div>
