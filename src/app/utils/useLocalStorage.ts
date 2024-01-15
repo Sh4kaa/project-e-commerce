@@ -1,14 +1,21 @@
-
+'use client'
 
 export default function useLocalStorage(key: string) {
-
   const getLocalData = () => {
-    const localData = localStorage.getItem(key)
-    return localData ? JSON.parse(localData) : null
+    try {
+      const localData = localStorage.getItem(key)
+      return localData ? JSON.parse(localData) : null
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   function setItem(value: unknown) {
-    localStorage.setItem(key, JSON.stringify(value))
+    try {
+      localStorage.setItem(key, JSON.stringify(value))
+    } catch (error) {
+      console.log(error)
+    }
   }
   return {
     getLocalData,
