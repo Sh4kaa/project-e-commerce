@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={`${inter.className} pt-20 bg-slate-200`}>
+      <body className={`${inter.className} pt-20 bg-slate-500`}>
         <PurchasedProductsProvider>
           <Header />
           <main className="max-w-screen-xl mx-auto flex flex-col px-6">
