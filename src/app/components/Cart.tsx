@@ -36,28 +36,28 @@ export default function Cart() {
   return (
     <section className='mx-auto'>
       {purchasedProducts.map(prod => (
-        <div key={prod.id} className='border-[2px] p-2 border-blue-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between'>
-          <h1>{prod.title}</h1>
-          <div className='flex justify-between items-center'>
-            <span className='block font-semibold text-3xl items-center'>{converterBRL(prod.price)}</span>
-            <div>
-              <span>Quant: </span>
+        <div key={prod.id} className='p-4 bg-slate-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between divide-y-2'>
+          <h1 className='my-0 mb-4 text-center text-white leading-8 font-bold'>{prod.title}</h1>
+          <div className='grid grid-cols-2 items-center justify-items-center pt-1 sm:flex sm:justify-between'>
+            <span className='block font-medium text-white text-3xl text-center col-span-2 max-[600px]:mb-4'>{converterBRL(prod.price)}</span>
+            <div className='w-max'>
+              <span className='text-white'>Qtd. </span>
               <input
                 type="number"
                 min={1}
-                className='w-9 h-8 rounded px-1'
+                className='w-11 h-8 rounded px-1'
                 value={quantities[prod.id] || 1}
                 onChange={(e) => handleQuantityChange(prod.id, +(e.target.value))}
               />
             </div>
             <Trash2 width={30}
-              className='text-black rounded hover:text-red-600 cursor-pointer hover:animate-pulse'
+              className='text-white rounded hover:text-red-600 cursor-pointer hover:animate-pulse'
               onClick={() => removeToCart(prod.id)}
             />
           </div>
         </div>
       ))}
-      <span className='text-xl font-semibold'><strong>Total: </strong>{sum}</span>
+      <span className='text-xl block text-center font-semibold'><strong>Total: </strong>{sum}</span>
     </section>
   )
 }
