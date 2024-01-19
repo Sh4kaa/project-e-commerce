@@ -1,9 +1,6 @@
 'use client'
 import { TypeProducts } from "@/types/prods";
-
 import { createContext, useContext, useState } from "react";
-
-
 
 type ContextProps = {
   addToCart: (product: TypeProducts) => boolean
@@ -16,9 +13,6 @@ const PurchasedProductsContext = createContext({} as ContextProps)
 
 export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([])
-
-
-
 
   const countProduct = purchasedProducts.length
   function addToCart(product: TypeProducts) {
