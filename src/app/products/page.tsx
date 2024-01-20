@@ -10,7 +10,10 @@ export const metadata = {
 }
 
 export default async function Products() {
-  const products = await getData()
+  const productApi = await getData()
+  const products = productApi.map(prod => ({ ...prod, quantity: 1 }))
+  console.log(products)
+
   return (
     <>
       <Suspense fallback={<p>Carregando...</p>}>

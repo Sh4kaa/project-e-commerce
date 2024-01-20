@@ -1,12 +1,13 @@
 'use client'
 import { TypeProducts } from "@/types/prods";
-import { createContext, useContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 
 type ContextProps = {
   addToCart: (product: TypeProducts) => boolean
   removeToCart: (id: number) => void
   purchasedProducts: TypeProducts[]
-  countProduct: number
+  countProduct: number,
+  setPurchasedProducts: Dispatch<SetStateAction<TypeProducts[]>>
 }
 
 const PurchasedProductsContext = createContext({} as ContextProps)
@@ -31,7 +32,7 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
     console.log(purchasedProducts)
   }
   return (
-    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct }}>
+    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct, setPurchasedProducts }}>
       {children}
     </PurchasedProductsContext.Provider>
   )

@@ -6,13 +6,16 @@ import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
 import { converterBRL } from "../utils/currencyConverter";
 
+
 type Props = {
   children: TypeProducts[];
 };
 
 export default function Product({ children }: Props) {
+
   const [inputSearch, setInputSearch] = React.useState("");
   const listProducts = children;
+
 
   function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
     setInputSearch(target.value);

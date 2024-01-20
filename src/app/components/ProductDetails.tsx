@@ -11,7 +11,8 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
   const { addToCart } = useProductContext()
 
   function sale(product: TypeProducts) {
-    const productCart = addToCart(product)
+    const newProduct = { ...product, quantity: 1 }
+    const productCart = addToCart(newProduct)
     if (productCart) {
       setProductInCart(true)
     } else {

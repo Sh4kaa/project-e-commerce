@@ -1,32 +1,35 @@
 "use client"
 import { useProductContext } from '@/contexts/CartContext'
-import { Trash2 } from 'lucide-react';
-import React, { useEffect, useState } from 'react'
+import { Trash2, Minus, Plus } from 'lucide-react';
+import React from 'react'
 import { converterBRL } from '../utils/currencyConverter'
-import useLocalStorage from '../utils/useLocalStorage';
-
-type Quantities = {
-  [key: number]: number;
-}
 
 export default function Cart() {
-  const { getLocalData, setItem } = useLocalStorage('quantity')
-  const [quantities, setQuantities] = useState<Quantities>(() => getLocalData())
-
-  useEffect(() => {
-    setItem(quantities)
-  }, [setItem, quantities])
-
-  const { purchasedProducts, removeToCart } = useProductContext()
+  const { purchasedProducts, removeToCart, setPurchasedProducts } = useProductContext()
   const total = purchasedProducts.reduce((acc, prod) => {
-    const quantity = quantities[prod.id] || 1
+    const quantity = prod.quantity
     let total = acc + (prod.price * quantity);
     return total
   }, 0)
   const sum = converterBRL(total)
+  console.log(purchasedProducts)
 
-  function handleQuantityChange(id: number, quantity: number) {
-    setQuantities({ ...quantities, [id]: quantity })
+  function handleQuantityChange(id: number, action: 'increase' | 'decrease') {
+    setPurchasedProducts(prevProducts => {
+      const productsUpdated = prevProducts.map(prod => {
+        if (prod.id === id) {
+          if (action === 'increase') {
+            prod.quantity += 1
+          }
+          if (action === 'decrease') {
+            prod.quantity = Math.max(1, prod.quantity - 1)
+          }
+        }
+        return prod
+      })
+      console.log(productsUpdated)
+      return productsUpdated
+    })
   }
 
   if (!purchasedProducts.length) {
@@ -40,15 +43,10 @@ export default function Cart() {
           <h1 className='my-0 mb-4 text-center text-white leading-8 font-bold'>{prod.title}</h1>
           <div className='grid grid-cols-2 items-center justify-items-center pt-1 sm:flex sm:justify-between'>
             <span className='block font-medium text-white text-3xl text-center col-span-2 max-[600px]:mb-4'>{converterBRL(prod.price)}</span>
-            <div className='w-max'>
-              <span className='text-white'>Qtd. </span>
-              <input
-                type="number"
-                min={1}
-                className='w-11 h-8 rounded px-1'
-                value={quantities[prod.id] || 1}
-                onChange={(e) => handleQuantityChange(prod.id, +(e.target.value))}
-              />
+            <div className='w-max flex justify-center items-center gap-2'>
+              <Minus className='bg-red-600 text-white rounded cursor-pointer' onClick={() => handleQuantityChange(prod.id, 'decrease')} />
+              {prod.quantity}
+              <Plus className='bg-red-600 text-white rounded cursor-pointer' onClick={() => handleQuantityChange(prod.id, 'increase')} />
             </div>
             <Trash2 width={30}
               className='text-white rounded hover:text-red-600 cursor-pointer hover:animate-pulse'
