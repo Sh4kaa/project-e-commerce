@@ -1,18 +1,25 @@
 "use client"
 import { useProductContext } from '@/contexts/CartContext'
 import { Trash2, Minus, Plus } from 'lucide-react';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { converterBRL } from '../utils/currencyConverter'
+import useLocalStorage from '../utils/useLocalStorage';
 
 export default function Cart() {
+  const { getLocalData } = useLocalStorage('productsincart')
   const { purchasedProducts, removeToCart, setPurchasedProducts } = useProductContext()
+
+  useEffect(() => {
+    const data = getLocalData()
+    setPurchasedProducts(data)
+  }, [])
+
   const total = purchasedProducts.reduce((acc, prod) => {
     const quantity = prod.quantity
     let total = acc + (prod.price * quantity);
     return total
   }, 0)
   const sum = converterBRL(total)
-  console.log(purchasedProducts)
 
   function handleQuantityChange(id: number, action: 'increase' | 'decrease') {
     setPurchasedProducts(prevProducts => {
@@ -27,7 +34,6 @@ export default function Cart() {
         }
         return prod
       })
-      console.log(productsUpdated)
       return productsUpdated
     })
   }
