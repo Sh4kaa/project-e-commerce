@@ -6,13 +6,16 @@ import { converterBRL } from '../utils/currencyConverter'
 import useLocalStorage from '../utils/useLocalStorage';
 
 export default function Cart() {
-  const { getLocalData } = useLocalStorage('productsincart')
   const { purchasedProducts, removeToCart, setPurchasedProducts } = useProductContext()
 
-  useEffect(() => {
-    const data = getLocalData()
-    setPurchasedProducts(data)
-  }, [])
+  const { getLocalData } = useLocalStorage('productsincart')
+
+  // useEffect(() => {
+  //   const localData = localStorage.getItem('productsincart')
+  //   if (localData) {
+  //     setPurchasedProducts(JSON.parse(localData))
+  //   }
+  // }, [setPurchasedProducts])
 
   const total = purchasedProducts.reduce((acc, prod) => {
     const quantity = prod.quantity
@@ -34,6 +37,7 @@ export default function Cart() {
         }
         return prod
       })
+      localStorage.setItem('productsincart', JSON.stringify(productsUpdated))
       return productsUpdated
     })
   }

@@ -8,7 +8,7 @@ export default function useLocalStorage(key: string) {
   function getLocalData() {
     const localData = localStorage.getItem(key)
     if (localData) {
-      const data = JSON.parse(localData)
+      const data: TypeProducts[] = JSON.parse(localData)
       return data
     }
   }
