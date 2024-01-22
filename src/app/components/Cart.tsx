@@ -10,12 +10,12 @@ export default function Cart() {
 
   const { getLocalData } = useLocalStorage('productsincart')
 
-  // useEffect(() => {
-  //   const localData = localStorage.getItem('productsincart')
-  //   if (localData) {
-  //     setPurchasedProducts(JSON.parse(localData))
-  //   }
-  // }, [setPurchasedProducts])
+  useEffect(() => {
+    const localData = getLocalData()
+    if (localData) {
+      setPurchasedProducts(localData)
+    }
+  }, [])
 
   const total = purchasedProducts.reduce((acc, prod) => {
     const quantity = prod.quantity
