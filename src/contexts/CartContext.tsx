@@ -23,7 +23,6 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
       return true
     } else {
       setPurchasedProducts([...purchasedProducts, product])
-      addToLocalStorage(purchasedProducts)
       return false
     }
   }
