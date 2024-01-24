@@ -3,19 +3,18 @@ import { useProductContext } from '@/contexts/CartContext'
 import { Trash2, Minus, Plus } from 'lucide-react';
 import React, { useEffect } from 'react'
 import { converterBRL } from '../utils/currencyConverter'
-import useLocalStorage from '../utils/useLocalStorage';
+import { addToLocalStorage, getFromLocalStorage } from '../utils/localStorage';
 
 export default function Cart() {
   const { purchasedProducts, removeToCart, setPurchasedProducts } = useProductContext()
 
-  const { getLocalData } = useLocalStorage('productsincart')
 
   useEffect(() => {
-    const localData = getLocalData()
-    if (localData) {
-      setPurchasedProducts(localData)
-    }
-  }, [])
+    const localData = getFromLocalStorage('cart')
+    setPurchasedProducts(localData)
+  }, [setPurchasedProducts])
+
+
 
   const total = purchasedProducts.reduce((acc, prod) => {
     const quantity = prod.quantity
@@ -37,7 +36,7 @@ export default function Cart() {
         }
         return prod
       })
-      localStorage.setItem('productsincart', JSON.stringify(productsUpdated))
+      addToLocalStorage(purchasedProducts)
       return productsUpdated
     })
   }

@@ -5,20 +5,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { converterBRL } from '../utils/currencyConverter'
 import { useState } from 'react'
-import useLocalStorage from '../utils/useLocalStorage'
+import { addToLocalStorage, getFromLocalStorage } from '../utils/localStorage'
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
-  const { addLocalStorage } = useLocalStorage('productsincart')
+
   const [productInCart, setProductInCart] = useState(false)
   const { addToCart } = useProductContext()
 
   function sale(product: TypeProducts) {
     const newProduct = { ...product, quantity: 1 }
     const productCart = addToCart(newProduct)
-    addLocalStorage(newProduct)
     if (productCart) {
       setProductInCart(true)
     } else {
+      const item = getFromLocalStorage('cart')
+      item.push(newProduct)
+      addToLocalStorage(item)
       setProductInCart(false)
     }
   }
