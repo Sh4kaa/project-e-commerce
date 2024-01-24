@@ -1,5 +1,5 @@
 'use client'
-import { addToLocalStorage } from "@/app/utils/localStorage";
+import { addToLocalStorage, getFromLocalStorage } from "@/app/utils/localStorage";
 import { TypeProducts } from "@/types/prods";
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 
@@ -30,8 +30,10 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
 
   function removeToCart(id: number) {
     const newListProduct = purchasedProducts.filter(product => product.id !== id)
+    const data = getFromLocalStorage('cart')
+    const newProductsLocalStorage = data.filter(item => item.id !== id)
+    addToLocalStorage(newProductsLocalStorage)
     setPurchasedProducts(newListProduct)
-    addToLocalStorage(purchasedProducts)
   }
   return (
     <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct, setPurchasedProducts }}>
