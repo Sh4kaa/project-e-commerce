@@ -4,24 +4,28 @@ import { TypeProducts } from '@/types/prods'
 import Image from 'next/image'
 import Link from 'next/link'
 import { converterBRL } from '../utils/currencyConverter'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { addToLocalStorage, getFromLocalStorage } from '../utils/localStorage'
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
-
   const [productInCart, setProductInCart] = useState(false)
   const { addToCart } = useProductContext()
 
+  useEffect(() => {
+    const cartItems = getFromLocalStorage('cart');
+    const isInCart = cartItems.some(item => item.id === product.id);
+    setProductInCart(isInCart);
+  }, [product.id]);
+
   function sale(product: TypeProducts) {
-    const newProduct = { ...product, quantity: 1 }
+    const newProduct = { ...product, quantity: 1, addedToCart: true }
     const productCart = addToCart(newProduct)
+    setProductInCart(true)
     if (productCart) {
-      setProductInCart(true)
     } else {
       const item = getFromLocalStorage('cart')
       item.push(newProduct)
       addToLocalStorage(item)
-      setProductInCart(false)
     }
   }
   return (
@@ -45,12 +49,12 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
               <button className="py-2 px-4 rounded bg-red-500/50 text-white cursor-not-allowed
             mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
             duration-500" onClick={() => sale(product)}>
-                Você já adicionou esse item
+                Item Adicionado
               </button>
             ) : (
               <button className="py-2 px-4 rounded bg-red-500
-            mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
-            duration-500" onClick={() => sale(product)}>
+              mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
+              duration-500" onClick={() => sale(product)}>
                 Comprar
               </button>
             )}
