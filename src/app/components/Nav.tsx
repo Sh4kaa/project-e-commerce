@@ -39,7 +39,7 @@ export default function Nav() {
         </li>
         <li >
           <Link
-            className="flex relative py-2 px-4 hover:bg-white rounded duration-300"
+            className="flex relative py-2 px-4 hover:bg-red-500 hover:text-black rounded duration-300 focus:bg-red-500"
             href="/cart"
           >
             <ShoppingCart />
