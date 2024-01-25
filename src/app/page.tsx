@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <h1>Pagina Home</h1>
-      <button >COmprar</button>
+      <h1 className="text-center">Pagina Home</h1>
+      <p className="text-center">Este site é um protótipo de um e-commerce</p>
     </>
   );
 }
