@@ -45,7 +45,7 @@ export default function Product({ children }: Props) {
           <li key={prod.id}>
             <Link href={`/products/${prod.id.toString()}`}>
               <div className="m-4 h-72 max-w-[220px] rounded-md bg-white shadow-lg transition hover:scale-105 group">
-                <div className="h-28 rounded-t-md border-b-4 border-black p-2 flex items-center justify-center">
+                <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">
                   <Image
                     src={prod.image}
                     alt={prod.category}
