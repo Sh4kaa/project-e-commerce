@@ -29,7 +29,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
     }
   }
   return (
-    <section className='h-[calc(100vh_-_4rem)] flex items-center'>
+    <section className='h-[calc(100vh_-_4rem)] flex items-center max-[500px]:h-auto pb-9'>
       <div className="bg-slate-700 p-4 rounded-md max-w-3xl mx-auto">
         <div className='flex gap-6 max-[600px]:flex-col items-center justify-center'>
           <Image
