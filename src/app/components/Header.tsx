@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import Nav from './Nav'
+import Link from "next/link";
+import Nav from "./Nav";
 
 export default function Header() {
   return (
@@ -9,5 +9,5 @@ export default function Header() {
         <Nav />
       </div>
     </header>
-  )
+  );
 }

@@ -1,44 +1,71 @@
-'use client'
-import { addToLocalStorage, getFromLocalStorage } from "@/app/utils/localStorage";
+"use client";
+import {
+  addToLocalStorage,
+  getFromLocalStorage,
+} from "@/app/utils/localStorage";
 import { TypeProducts } from "@/types/prods";
-import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 type ContextProps = {
-  addToCart: (product: TypeProducts) => boolean
-  removeToCart: (id: number) => void
-  purchasedProducts: TypeProducts[]
-  countProduct: number,
-  setPurchasedProducts: Dispatch<SetStateAction<TypeProducts[]>>
-}
+  addToCart: (product: TypeProducts) => boolean;
+  removeToCart: (id: number) => void;
+  purchasedProducts: TypeProducts[];
+  countProduct: number;
+  setPurchasedProducts: Dispatch<SetStateAction<TypeProducts[]>>;
+};
 
-const PurchasedProductsContext = createContext({} as ContextProps)
+const PurchasedProductsContext = createContext({} as ContextProps);
 
-export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([])
+export const PurchasedProductsProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>(
+    [],
+  );
 
-  const countProduct = purchasedProducts.length
+  const countProduct = purchasedProducts.length;
   function addToCart(product: TypeProducts) {
-    const isProductInCart = purchasedProducts.some(prod => prod.id === product.id);
+    const isProductInCart = purchasedProducts.some(
+      (prod) => prod.id === product.id,
+    );
     if (isProductInCart) {
-      return true
+      return true;
     } else {
-      setPurchasedProducts([...purchasedProducts, product])
-      return false
+      setPurchasedProducts([...purchasedProducts, product]);
+      return false;
     }
   }
 
   function removeToCart(id: number) {
-    const newListProduct = purchasedProducts.filter(product => product.id !== id)
-    const data = getFromLocalStorage('cart')
-    const newProductsLocalStorage = data.filter(item => item.id !== id)
-    addToLocalStorage(newProductsLocalStorage)
-    setPurchasedProducts(newListProduct)
+    const newListProduct = purchasedProducts.filter(
+      (product) => product.id !== id,
+    );
+    const data = getFromLocalStorage("cart");
+    const newProductsLocalStorage = data.filter((item) => item.id !== id);
+    addToLocalStorage(newProductsLocalStorage);
+    setPurchasedProducts(newListProduct);
   }
   return (
-    <PurchasedProductsContext.Provider value={{ addToCart, removeToCart, purchasedProducts, countProduct, setPurchasedProducts }}>
+    <PurchasedProductsContext.Provider
+      value={{
+        addToCart,
+        removeToCart,
+        purchasedProducts,
+        countProduct,
+        setPurchasedProducts,
+      }}
+    >
       {children}
     </PurchasedProductsContext.Provider>
-  )
-}
+  );
+};
 
-export const useProductContext = () => useContext(PurchasedProductsContext)
+export const useProductContext = () => useContext(PurchasedProductsContext);

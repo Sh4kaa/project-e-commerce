@@ -6,22 +6,19 @@ import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
 import { converterBRL } from "../utils/currencyConverter";
 
-
 type Props = {
   children: TypeProducts[];
 };
 
 export default function Product({ children }: Props) {
-
   const [inputSearch, setInputSearch] = React.useState("");
   const listProducts = children;
-
 
   function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
     setInputSearch(target.value);
   }
   const filteredListProducts = listProducts.filter((prod) =>
-    prod.title.toLowerCase().includes(inputSearch.toLowerCase())
+    prod.title.toLowerCase().includes(inputSearch.toLowerCase()),
   );
 
   return (
@@ -38,7 +35,6 @@ export default function Product({ children }: Props) {
           <Search className="text-white" />
         </div>
       </div>
-
 
       <ul className="flex flex-wrap gap-2 justify-center">
         {filteredListProducts.map((prod) => (
@@ -61,7 +57,9 @@ export default function Product({ children }: Props) {
                     {prod.description}
                   </p>
                   <p className="flex items-center justify-center gap-2">
-                    <span className="text-3xl font-bold">{converterBRL(prod.price)}</span>
+                    <span className="text-3xl font-bold">
+                      {converterBRL(prod.price)}
+                    </span>
                   </p>
                   <button className="rounded bg-red-500 py-2 font-bold transition group-hover:text-black group-hover:bg-white">
                     COMPRAR
@@ -72,7 +70,6 @@ export default function Product({ children }: Props) {
           </li>
         ))}
       </ul>
-
     </>
   );
 }
