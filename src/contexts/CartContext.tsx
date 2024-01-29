@@ -1,16 +1,8 @@
 "use client";
-import {
-  addToLocalStorage,
-  getFromLocalStorage,
-} from "@/app/utils/localStorage";
+import { addToLocalStorage, getFromLocalStorage } from "@/app/utils/localStorage";
 import { TypeProducts } from "@/types/prods";
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 type ContextProps = {
   addToCart: (product: TypeProducts) => boolean;
@@ -22,23 +14,16 @@ type ContextProps = {
 
 const PurchasedProductsContext = createContext({} as ContextProps);
 
-export const PurchasedProductsProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>(
-    [],
-  );
+export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
+  const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([]);
 
   const countProduct = purchasedProducts.length;
   function addToCart(product: TypeProducts) {
-    const isProductInCart = purchasedProducts.some(
-      (prod) => prod.id === product.id,
-    );
+    const isProductInCart = purchasedProducts.some(prod => prod.id === product.id);
     if (isProductInCart) {
       return true;
     } else {
+      toast("Item adicionado");
       setPurchasedProducts([...purchasedProducts, product]);
       return false;
     }
@@ -55,13 +40,7 @@ export const PurchasedProductsProvider = ({
   }
   return (
     <PurchasedProductsContext.Provider
-      value={{
-        addToCart,
-        removeToCart,
-        purchasedProducts,
-        countProduct,
-        setPurchasedProducts,
-      }}
+      value={{ addToCart, removeToCart, purchasedProducts, countProduct, setPurchasedProducts }}
     >
       {children}
     </PurchasedProductsContext.Provider>

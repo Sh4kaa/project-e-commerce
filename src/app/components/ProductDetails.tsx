@@ -6,24 +6,23 @@ import Link from "next/link";
 import { converterBRL } from "../utils/currencyConverter";
 import { useEffect, useState } from "react";
 import { addToLocalStorage, getFromLocalStorage } from "../utils/localStorage";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
-  const [productInCart, setProductInCart] = useState(false);
+  const [activeBtnInCart, setActiveBtnInCart] = useState(false);
   const { addToCart } = useProductContext();
 
   useEffect(() => {
     const cartItems = getFromLocalStorage("cart");
     const isInCart = cartItems.some((item) => item.id === product.id);
-    setProductInCart(isInCart);
+    setActiveBtnInCart(isInCart);
   }, [product.id]);
 
   function sale(product: TypeProducts) {
-    toast("Item adicionado");
     const newProduct = { ...product, quantity: 1, addedToCart: true };
     const productCart = addToCart(newProduct);
-    setProductInCart(true);
+    setActiveBtnInCart(true);
     if (productCart) {
     } else {
       const item = getFromLocalStorage("cart");
@@ -48,7 +47,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
             <p className="text-4xl font-bold text-center mt-5">
               {converterBRL(product.price)}
             </p>
-            {productInCart ? (
+            {activeBtnInCart ? (
               <button
                 className="py-2 px-4 rounded bg-red-500/50 text-white cursor-not-allowed
             mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
