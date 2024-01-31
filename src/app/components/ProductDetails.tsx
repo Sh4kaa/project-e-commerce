@@ -32,7 +32,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
   }
   return (
     <section>
-      <div className="bg-slate-700 p-4 rounded-md max-w-3xl mx-auto">
+      <div className="bg-slate-700 p-4 rounded-md max-w-3xl min-w-min mx-auto">
         <div className="flex gap-6 max-[600px]:flex-col items-center justify-center">
           <Image
             src={product.image}
@@ -69,7 +69,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
           </div>
         </div>
         <Link
-          className="block bg-red-500 py-2 px-4 mt-9 w-max mx-auto rounded text-center text-white font-semibold hover:text-black duration-500"
+          className="block bg-red-500 py-2 px-4 mt-4 mx-auto rounded text-center text-white font-semibold hover:text-black duration-500"
           href={"/products"}
         >
           Continuar comprando
