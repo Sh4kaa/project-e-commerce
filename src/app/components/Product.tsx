@@ -23,19 +23,13 @@ export default function Product({ children }: Props) {
 
   return (
     <>
-      <div className="flex gap-2 items-center mx-auto max-w-[900px] justify-center">
-        <input
-          className="border border-black mx-auto pl-2 py-1 my-8 rounded-md md:w-[400px]"
-          type="text"
-          value={inputSearch}
-          onChange={handleChange}
-          placeholder="Pesquise seu produto"
-        />
-        <div className="bg-slate-700 p-1 rounded-md">
-          <Search className="text-white" />
-        </div>
-      </div>
-
+      <input
+        className="block mx-auto pl-2 py-1 rounded-md outline-none w-full max-w-md"
+        type="text"
+        value={inputSearch}
+        onChange={handleChange}
+        placeholder="Pesquise seu produto"
+      />
       <ul className="flex flex-wrap gap-2 justify-center">
         {filteredListProducts.map((prod) => (
           <li key={prod.id}>
