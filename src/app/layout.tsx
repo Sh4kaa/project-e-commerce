@@ -16,7 +16,7 @@ export default function RootLayout({
       <body className={`${inter.className} pt-20 bg-slate-500`}>
         <PurchasedProductsProvider>
           <Header />
-          <main className="max-w-screen-xl mx-auto h-[calc(100vh_-_4rem)] p-4 ">
+          <main className="max-w-screen-xl mx-auto h-[calc(100vh_-_80px)] p-4">
             {children}
           </main>
         </PurchasedProductsProvider>

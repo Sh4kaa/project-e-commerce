@@ -31,50 +31,46 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
     }
   }
   return (
-    <section>
-      <div className="bg-slate-700 p-4 rounded-md max-w-3xl min-w-min mx-auto">
-        <div className="flex gap-6 max-[600px]:flex-col items-center justify-center">
-          <Image
-            src={product.image}
-            width={400}
-            height={400}
-            alt={product.category}
-            className="rounded min-w-[256px] w-full"
-          />
-          <div className="flex flex-col">
-            <h1 className="text-center font-bold">{product.title}</h1>
-            <p>{product.description}</p>
-            <p className="text-4xl font-bold text-center mt-5">
-              {converterBRL(product.price)}
-            </p>
-            {activeBtnInCart ? (
-              <button
-                className="py-2 px-4 rounded bg-red-500/50 text-white cursor-not-allowed
-            mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
-            duration-500"
-                onClick={() => sale(product)}
-              >
-                Item Adicionado
-              </button>
-            ) : (
-              <button
-                className="py-2 px-4 rounded bg-red-500
-              mt-4 font-semibold text-lg active:scale-105 active:bg-red-500/70 active:text-white
-              duration-500"
-                onClick={() => sale(product)}
-              >
-                Comprar
-              </button>
-            )}
-          </div>
-        </div>
+    <section className="grid grid-cols-1 p-4 rounded place-items-center sm:grid-cols-2 sm:grid-rows-3 gap-4">
+      <Image
+        className="rounded sm:col-start-1 sm:row-start-1 sm:row-span-4 sm:place-self-start"
+        src={product.image}
+        width={500}
+        height={500}
+        alt={product.category}
+      />
+      <div className="sm:row-span-2">
+        <h1 className="text-center font-extrabold">{product.title}</h1>
+        <p className="text-center sm:text-lg">{product.description}</p>
+        <span className="block text-[2rem] sm:text-6xl font-bold text-center mt-5">
+          {converterBRL(product.price)}
+        </span>
+      </div>
+      <div className="w-full space-y-3">
+        {activeBtnInCart ? (
+          <button
+            className=""
+            onClick={() => sale(product)}
+          >
+            Item Adicionado
+          </button>
+        ) : (
+          <button
+            className="block py-3 text-center rounded bg-red-600 w-full sm:py-5 font-bold sm:text-2xl hover:text-white duration-500"
+            onClick={() => sale(product)}
+          >
+            COMPRAR
+          </button>
+        )}
+
         <Link
-          className="block bg-red-500 py-2 px-4 mt-4 mx-auto rounded text-center text-white font-semibold hover:text-black duration-500"
+          className="block bg-red-600 py-3 sm:py-5 rounded w-full text-center sm:text-2xl font-bold hover:text-white duration-500"
           href={"/products"}
         >
-          Continuar comprando
+          CONTINUAR COMPRANDO
         </Link>
       </div>
+
       <ToastContainer />
     </section>
   );
