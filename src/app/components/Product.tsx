@@ -24,17 +24,17 @@ export default function Product({ children }: Props) {
   return (
     <>
       <input
-        className="block mx-auto pl-2 py-1 rounded-md outline-none w-full max-w-md"
+        className="block mx-auto pl-2 py-2 rounded-md outline-none w-full max-w-md mb-4"
         type="text"
         value={inputSearch}
         onChange={handleChange}
         placeholder="Pesquise seu produto"
       />
-      <ul className="flex flex-wrap gap-2 justify-center">
+      <ul className="flex flex-wrap justify-center gap-4">
         {filteredListProducts.map((prod) => (
-          <li key={prod.id}>
-            <Link href={`/products/${prod.id.toString()}`}>
-              <div className="m-4 h-72 max-w-[220px] rounded-md bg-white shadow-lg transition hover:scale-105 group">
+          <li key={prod.id} className="max-w-[194px]">
+            <Link className="block w-full" href={`/products/${prod.id.toString()}`}>
+              <div className="rounded-md bg-white">
                 <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">
                   <Image
                     src={prod.image}
@@ -43,13 +43,10 @@ export default function Product({ children }: Props) {
                     height={60}
                   />
                 </div>
-                <div className="flex h-44 flex-col justify-between rounded-b bg-slate-700 text-white px-2 pb-2">
-                  <h1 className="h-6 overflow-hidden text-center font-semibold text-base">
+                <div className="flex flex-col justify-between rounded-b bg-slate-700 text-white px-2 pb-2">
+                  <h1 className="h-6 my-0 mt-1 overflow-hidden text-center font-semibold text-base">
                     {prod.title}
                   </h1>
-                  <p className="h-12 overflow-hidden text-center text-xs leading-none">
-                    {prod.description}
-                  </p>
                   <p className="flex items-center justify-center gap-2">
                     <span className="text-3xl font-bold">
                       {converterBRL(prod.price)}
