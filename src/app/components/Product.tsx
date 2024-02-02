@@ -32,7 +32,7 @@ export default function Product({ children }: Props) {
       />
       <ul className="flex flex-wrap justify-center gap-4">
         {filteredListProducts.map((prod) => (
-          <li key={prod.id} className="grow shrink-0 basis-20 max-w-[177px] sm:basis-48">
+          <li key={prod.id} className="grow shrink basis-44 md:grow-0">
             <Link className="block w-full" href={`/products/${prod.id.toString()}`}>
               <div className="rounded-md bg-white">
                 <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">
