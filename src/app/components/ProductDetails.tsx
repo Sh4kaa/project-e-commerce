@@ -39,14 +39,14 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
         height={500}
         alt={product.category}
       />
-      <div className="sm:row-span-2">
-        <h1 className="text-center font-extrabold text-lg sm:text-4xl sm:mb-3">{product.title}</h1>
-        <p className="text-center sm:text-lg">{product.description}</p>
-        <span className="block text-[2rem] sm:text-4xl font-bold text-center mt-5">
+      <div className="sm:row-span-2 self-end md:self-start xl:self-end">
+        <h1 className="text-center font-extrabold text-lg sm:text-4xl lg:text-5xl sm:mb-3">{product.title}</h1>
+        <p className="text-center sm:text-lg md:text-2xl lg:mt-8 md:mt-8">{product.description}</p>
+        <span className="block text-[2rem] sm:text-4xl md:text-5xl lg:text-7xl  font-bold text-center mt-5">
           {converterBRL(product.price)}
         </span>
       </div>
-      <div className="w-full space-y-3">
+      <div className="w-full space-y-3 md:self-start lg:mt-4">
         {activeBtnInCart ? (
           <button
             className="block py-3 text-center rounded bg-red-600/70 w-full sm:py-5 font-bold sm:text-2xl hover:text-white duration-500 cursor-not-allowed"
@@ -56,7 +56,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
           </button>
         ) : (
           <button
-            className="block py-3 text-center rounded bg-red-600 w-full sm:py-5 font-bold sm:text-2xl hover:text-white duration-500"
+            className="block py-3 text-center rounded bg-red-600 w-full sm:py-5 md:py-4 font-bold sm:text-2xl hover:text-white duration-500"
             onClick={() => sale(product)}
           >
             COMPRAR
@@ -64,7 +64,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
         )}
 
         <Link
-          className="block bg-red-600 py-3 sm:py-5 rounded w-full text-center sm:text-2xl font-bold hover:text-white duration-500"
+          className="block bg-red-600 py-3 sm:py-5 md:py-4 rounded w-full text-center sm:text-2xl font-bold hover:text-white duration-500"
           href={"/products"}
         >
           CONTINUAR COMPRANDO
