@@ -31,25 +31,25 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
     }
   }
   return (
-    <section className="grid grid-cols-1 p-4 rounded place-items-center sm:grid-cols-2 sm:grid-rows-3 gap-4">
+    <section className="grid grid-cols-1 p-4 rounded place-items-center md:grid-cols-2 md:grid-rows-3 gap-4">
       <Image
-        className="rounded sm:col-start-1 sm:row-start-1 sm:row-span-4 sm:place-self-start"
+        className="rounded sm:col-start-1 sm:row-start-1 sm:row-span-4 md:place-self-start"
         src={product.image}
         width={500}
         height={500}
         alt={product.category}
       />
       <div className="sm:row-span-2">
-        <h1 className="text-center font-extrabold">{product.title}</h1>
+        <h1 className="text-center font-extrabold text-lg sm:text-4xl sm:mb-3">{product.title}</h1>
         <p className="text-center sm:text-lg">{product.description}</p>
-        <span className="block text-[2rem] sm:text-6xl font-bold text-center mt-5">
+        <span className="block text-[2rem] sm:text-4xl font-bold text-center mt-5">
           {converterBRL(product.price)}
         </span>
       </div>
       <div className="w-full space-y-3">
         {activeBtnInCart ? (
           <button
-            className=""
+            className="block py-3 text-center rounded bg-red-600/70 w-full sm:py-5 font-bold sm:text-2xl hover:text-white duration-500 cursor-not-allowed"
             onClick={() => sale(product)}
           >
             Item Adicionado
