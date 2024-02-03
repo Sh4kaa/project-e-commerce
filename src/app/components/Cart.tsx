@@ -45,37 +45,39 @@ export default function Cart() {
 
   return (
     <section className="mx-auto">
-      {purchasedProducts.map((prod) => (
-        <div
-          key={prod.id}
-          className="p-4 bg-slate-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between divide-y-2"
-        >
-          <h1 className="my-0 mb-4 text-center text-white leading-8 font-bold">
-            {prod.title}
-          </h1>
-          <div className="grid grid-cols-2 items-center justify-items-center pt-1 sm:flex sm:justify-between">
-            <span className="block font-medium text-white text-3xl text-center col-span-2 max-[600px]:mb-4">
-              {converterBRL(prod.price)}
-            </span>
-            <div className="w-max flex justify-center items-center gap-2">
-              <Minus
-                className="bg-red-600 text-white rounded cursor-pointer"
-                onClick={() => handleQuantityChange(prod.id, "decrease")}
-              />
-              {prod.quantity}
-              <Plus
-                className="bg-red-600 text-white rounded cursor-pointer"
-                onClick={() => handleQuantityChange(prod.id, "increase")}
+      <div className="flex gap-2 flex-wrap justify-center">
+        {purchasedProducts.map((prod) => (
+          <div
+            key={prod.id}
+            className="p-4 bg-slate-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between divide-y-2"
+          >
+            <h1 className="my-0 mb-4 text-center text-white font-normal">
+              {prod.title}
+            </h1>
+            <div className="grid grid-cols-2 items-center justify-items-center pt-1 sm:flex sm:justify-between">
+              <span className="block font-medium text-white text-3xl text-center col-span-2 max-[600px]:mb-4">
+                {converterBRL(prod.price)}
+              </span>
+              <div className="w-max flex justify-center items-center gap-2">
+                <Minus
+                  className="bg-red-600 text-white rounded cursor-pointer"
+                  onClick={() => handleQuantityChange(prod.id, "decrease")}
+                />
+                {prod.quantity}
+                <Plus
+                  className="bg-red-600 text-white rounded cursor-pointer"
+                  onClick={() => handleQuantityChange(prod.id, "increase")}
+                />
+              </div>
+              <Trash2
+                width={30}
+                className="text-white rounded hover:text-red-600 cursor-pointer hover:animate-pulse"
+                onClick={() => removeToCart(prod.id)}
               />
             </div>
-            <Trash2
-              width={30}
-              className="text-white rounded hover:text-red-600 cursor-pointer hover:animate-pulse"
-              onClick={() => removeToCart(prod.id)}
-            />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <span className="text-xl block text-center font-semibold">
         <strong>Total: </strong>
         {sum}
