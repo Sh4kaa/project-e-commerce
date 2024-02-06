@@ -4,6 +4,7 @@ import { Trash2, Minus, Plus } from "lucide-react";
 import React, { useEffect } from "react";
 import { converterBRL } from "../utils/currencyConverter";
 import { addToLocalStorage, getFromLocalStorage } from "../utils/localStorage";
+import Image from "next/image";
 
 export default function Cart() {
   const { purchasedProducts, removeToCart, setPurchasedProducts } =
@@ -44,44 +45,51 @@ export default function Cart() {
   }
 
   return (
-    <section className="mx-auto">
-      <div className="flex gap-2 flex-wrap justify-center">
+    <section className="">
+      <div className="flex flex-wrap gap-2 justify-center">
         {purchasedProducts.map((prod) => (
-          <div
-            key={prod.id}
-            className="p-4 bg-slate-700 rounded-md w-64 sm:w-96 mb-2 flex flex-col justify-between divide-y-2"
-          >
-            <h1 className="my-0 mb-4 text-center text-white font-normal">
-              {prod.title}
-            </h1>
-            <div className="grid grid-cols-2 items-center justify-items-center pt-1 sm:flex sm:justify-between">
-              <span className="block font-medium text-white text-3xl text-center col-span-2 max-[600px]:mb-4">
+          <div key={prod.id} className="bg-white grow shrink basis-72 max-w-[310px] flex rounded overflow-hidden pl-2 py-2 h-[130px]" >
+            <Image src={prod.image} width={90} height={90} alt={prod.title} />
+            <div className="w-full flex flex-col justify-evenly px-2">
+              {/* title */}
+              <h1 className="text-center font-bold text-lg h-[28px] overflow-y-hidden">{prod.title}</h1>
+              {/* price */}
+              <span className="block text-center text-2xl">
                 {converterBRL(prod.price)}
               </span>
-              <div className="w-max flex justify-center items-center gap-2">
-                <Minus
-                  className="bg-red-600 text-white rounded cursor-pointer"
-                  onClick={() => handleQuantityChange(prod.id, "decrease")}
-                />
-                {prod.quantity}
-                <Plus
-                  className="bg-red-600 text-white rounded cursor-pointer"
-                  onClick={() => handleQuantityChange(prod.id, "increase")}
-                />
+              {/* quantitities */}
+              <div className="flex justify-between">
+                <div className="flex">
+                  <Minus
+                    className="bg-red-600 rounded"
+                    color="white"
+                    width={22}
+                    height={22}
+                    onClick={() => handleQuantityChange(prod.id, "decrease")}
+                  />
+                  <span className="mx-2">
+                    {prod.quantity}
+                  </span>
+                  <Plus
+                    className="bg-red-600 rounded"
+                    color="white"
+                    width={22}
+                    height={22}
+                    onClick={() => handleQuantityChange(prod.id, "increase")}
+                  />
+                </div>
+                <Trash2 className="bg-red-600 py-1 rounded" height={25} color="white" onClick={() => removeToCart(prod.id)} />
               </div>
-              <Trash2
-                width={30}
-                className="text-white rounded hover:text-red-600 cursor-pointer hover:animate-pulse"
-                onClick={() => removeToCart(prod.id)}
-              />
             </div>
+
+
           </div>
         ))}
       </div>
-      <span className="text-xl block text-center font-semibold">
+      <span className="block text-center mt-3">
         <strong>Total: </strong>
         {sum}
       </span>
-    </section>
+    </section >
   );
 }
