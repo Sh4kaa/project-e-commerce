@@ -16,27 +16,37 @@ const PurchasedProductsContext = createContext({} as ContextProps);
 
 export const PurchasedProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [purchasedProducts, setPurchasedProducts] = useState<TypeProducts[]>([]);
-
   const countProduct = purchasedProducts.length;
+
   function addToCart(product: TypeProducts) {
-    const isProductInCart = purchasedProducts.some(prod => prod.id === product.id);
-    if (isProductInCart) {
-      return true;
+    const productsInLocalStorage = getFromLocalStorage('cart')
+    const productsLocal = productsInLocalStorage.some(prod => prod.id === product.id)
+    if (!productsLocal) {
+      addToLocalStorage([...productsInLocalStorage, product])
+      const itemsInLocalStorage = getFromLocalStorage('cart')
+      setPurchasedProducts(itemsInLocalStorage)
+      toast('Adicionado ao carinho')
+      return false
     } else {
-      toast("Item adicionado");
-      setPurchasedProducts([...purchasedProducts, product]);
-      return false;
+      return true
     }
+    // const isProductInCart = purchasedProducts.some(prod => prod.id === product.id);
+    // if (isProductInCart) {
+    //   return true;
+    // } else {
+    //   toast("Item adicionado");
+    //   addToLocalStorage(purchasedProducts)
+    //   setPurchasedProducts([...purchasedProducts, product]);
+    //   return false;
+    // }
   }
 
   function removeToCart(id: number) {
-    const newListProduct = purchasedProducts.filter(
-      (product) => product.id !== id,
-    );
+    // const newListProduct = purchasedProducts.filter((product) => product.id !== id );
     const data = getFromLocalStorage("cart");
     const newProductsLocalStorage = data.filter((item) => item.id !== id);
     addToLocalStorage(newProductsLocalStorage);
-    setPurchasedProducts(newListProduct);
+    setPurchasedProducts(newProductsLocalStorage);
   }
   return (
     <PurchasedProductsContext.Provider

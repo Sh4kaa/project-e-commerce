@@ -1,10 +1,10 @@
 "use client";
 import React, { ChangeEvent } from "react";
-import { Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
 import { converterBRL } from "../utils/currencyConverter";
+import { useProductContext } from "@/contexts/CartContext";
 
 type Props = {
   children: TypeProducts[];
@@ -12,6 +12,7 @@ type Props = {
 
 export default function Product({ children }: Props) {
   const [inputSearch, setInputSearch] = React.useState("");
+  const { addToCart } = useProductContext()
   const listProducts = children;
 
   function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
@@ -20,6 +21,10 @@ export default function Product({ children }: Props) {
   const filteredListProducts = listProducts.filter((prod) =>
     prod.title.toLowerCase().includes(inputSearch.toLowerCase()),
   );
+
+  function handleAddToCart(product: TypeProducts) {
+    addToCart(product)
+  }
 
   return (
     <>
@@ -33,31 +38,37 @@ export default function Product({ children }: Props) {
       <ul className="flex flex-wrap justify-center gap-4">
         {filteredListProducts.map((prod) => (
           <li key={prod.id} className="grow shrink basis-44 md:grow-0">
-            <Link className="block w-full" href={`/products/${prod.id.toString()}`}>
-              <div className="rounded-md bg-white">
-                <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">
-                  <Image
-                    src={prod.image}
-                    alt={prod.category}
-                    width={60}
-                    height={60}
-                  />
-                </div>
-                <div className="flex flex-col justify-between rounded-b bg-slate-700 text-white px-2 pb-2">
-                  <h1 className="h-6 my-0 mt-1 overflow-hidden text-center font-semibold text-base">
-                    {prod.title}
-                  </h1>
-                  <p className="flex items-center justify-center gap-2">
-                    <span className="text-3xl font-bold">
-                      {converterBRL(prod.price)}
-                    </span>
-                  </p>
-                  <button className="rounded bg-red-500 py-2 font-bold transition group-hover:text-black group-hover:bg-white">
-                    COMPRAR
+
+            <div className="rounded-md bg-white">
+              <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">
+                <Image
+                  src={prod.image}
+                  alt={prod.category}
+                  width={60}
+                  height={60}
+                />
+              </div>
+              <div className="flex flex-col justify-between rounded-b bg-slate-700 text-white px-2 pb-2">
+                <h1 className="h-6 my-0 mt-1 overflow-hidden text-center font-semibold text-base">
+                  {prod.title}
+                </h1>
+                <p className="flex items-center justify-center gap-2">
+                  <span className="text-3xl font-bold">
+                    {converterBRL(prod.price)}
+                  </span>
+                </p>
+                <div className="flex gap-4">
+                  <Link className="block w-full bg-red-600" href={`/products/${prod.id.toString()}`}>
+                    Detalhes
+                  </Link>
+                  <button className="block w-ful bg-red-600" onClick={() => handleAddToCart(prod)}>
+                    addToCart
                   </button>
                 </div>
+
               </div>
-            </Link>
+            </div>
+
           </li>
         ))}
       </ul>
