@@ -10,4 +10,5 @@ export type TypeProducts = {
     count: number;
   };
   quantity: number
+  addedToCart: boolean
 };

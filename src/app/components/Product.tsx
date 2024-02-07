@@ -1,29 +1,46 @@
 "use client";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { TypeProducts } from "@/types/prods";
 import { converterBRL } from "../utils/currencyConverter";
 import { useProductContext } from "@/contexts/CartContext";
+import { getFromLocalStorage } from "../utils/localStorage";
 
 type Props = {
   children: TypeProducts[];
 };
 
 export default function Product({ children }: Props) {
+  const [listProducts, setListProducts] = useState(children)
   const [inputSearch, setInputSearch] = React.useState("");
   const { addToCart } = useProductContext()
-  const listProducts = children;
+  // let listProducts = children
 
   function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
     setInputSearch(target.value);
   }
+
   const filteredListProducts = listProducts.filter((prod) =>
     prod.title.toLowerCase().includes(inputSearch.toLowerCase()),
   );
 
   function handleAddToCart(product: TypeProducts) {
+    product = { ...product, quantity: 1, addedToCart: true }
     addToCart(product)
+    // setListProducts((prevProd) => prevProd.map(item => {
+    //   if (item.id === product.id) {
+    //     const newItem = {
+    //       ...item,
+    //       addedToCart: true
+    //     }
+
+    //     return newItem
+    //   }
+    //   return item
+    // }))
+
+    console.log(listProducts)
   }
 
   return (
@@ -61,14 +78,18 @@ export default function Product({ children }: Props) {
                   <Link className="block w-full bg-red-600 rounded px-1" href={`/products/${prod.id.toString()}`}>
                     Detalhes
                   </Link>
-                  <button className="block w-ful bg-red-600 rounded px-1" onClick={() => handleAddToCart(prod)}>
-                    Comprar
-                  </button>
+                  {prod.addedToCart ? (
+                    <button className="block w-ful bg-red-600 rounded px-1">
+                      Added
+                    </button>
+                  ) : (
+                    <button className="block w-ful bg-red-600 rounded px-1" onClick={() => handleAddToCart(prod)}>
+                      Comprar
+                    </button>
+                  )}
                 </div>
-
               </div>
             </div>
-
           </li>
         ))}
       </ul>
