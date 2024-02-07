@@ -57,12 +57,12 @@ export default function Product({ children }: Props) {
                     {converterBRL(prod.price)}
                   </span>
                 </p>
-                <div className="flex gap-4">
-                  <Link className="block w-full bg-red-600" href={`/products/${prod.id.toString()}`}>
+                <div className="flex gap-4 mt-1">
+                  <Link className="block w-full bg-red-600 rounded px-1" href={`/products/${prod.id.toString()}`}>
                     Detalhes
                   </Link>
-                  <button className="block w-ful bg-red-600" onClick={() => handleAddToCart(prod)}>
-                    addToCart
+                  <button className="block w-ful bg-red-600 rounded px-1" onClick={() => handleAddToCart(prod)}>
+                    Comprar
                   </button>
                 </div>
 
