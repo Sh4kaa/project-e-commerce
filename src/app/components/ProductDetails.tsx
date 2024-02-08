@@ -4,10 +4,10 @@ import { TypeProducts } from "@/types/prods";
 import Image from "next/image";
 import Link from "next/link";
 import { converterBRL } from "../utils/currencyConverter";
-import { useEffect, useState } from "react";
-import { addToLocalStorage, getFromLocalStorage } from "../utils/localStorage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getFromLocalStorage } from "../utils/localStorage";
+import { useEffect, useState } from "react";
 
 export default function ProductDetails({ product }: { product: TypeProducts }) {
   const [activeBtnInCart, setActiveBtnInCart] = useState(false);
@@ -21,15 +21,9 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
 
   function sale(product: TypeProducts) {
     const newProduct = { ...product, quantity: 1, addedToCart: true };
-    const productCart = addToCart(newProduct);
-    setActiveBtnInCart(true);
-    if (productCart) {
-    } else {
-      const item = getFromLocalStorage("cart");
-      item.push(newProduct);
-      addToLocalStorage(item);
-    }
+    addToCart(newProduct);
   }
+
   return (
     <section className="grid grid-cols-1 p-4 rounded place-items-center md:grid-cols-2 md:grid-rows-3 gap-4">
       <Image
@@ -50,7 +44,6 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
         {activeBtnInCart ? (
           <button
             className="block py-3 text-center rounded bg-red-600/70 w-full sm:py-5 font-bold sm:text-2xl hover:text-white duration-500 cursor-not-allowed"
-            onClick={() => sale(product)}
           >
             Item Adicionado
           </button>

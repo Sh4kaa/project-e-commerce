@@ -13,6 +13,7 @@ type Props = {
 
 export default function Product({ children }: Props) {
   const [listProducts, setListProducts] = useState(children)
+  // const [btnInCart, setBtnInCart] = useState(false)
   const [inputSearch, setInputSearch] = React.useState("");
   const { addToCart } = useProductContext()
   // let listProducts = children
@@ -27,21 +28,22 @@ export default function Product({ children }: Props) {
 
   function handleAddToCart(product: TypeProducts) {
     product = { ...product, quantity: 1, addedToCart: true }
+    console.log(product)
     addToCart(product)
-    // setListProducts((prevProd) => prevProd.map(item => {
-    //   if (item.id === product.id) {
-    //     const newItem = {
-    //       ...item,
-    //       addedToCart: true
-    //     }
+    //peganod items do carrinho
+    const itemsInCart = getFromLocalStorage('cart')
+    // verificando se o item está no carrinho
+    const isProductInCart = itemsInCart.find(item => item.id === product.id);
+    //pegando o item do carrinho e jogando na lsita d eprodutos substituido
+    setListProducts(prevItem => prevItem.map(item => {
+      if (item.id === isProductInCart?.id) {
+        return isProductInCart
+      } else { return item }
+    }))
 
-    //     return newItem
-    //   }
-    //   return item
-    // }))
-
-    console.log(listProducts)
   }
+
+  console.log(listProducts)
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function Product({ children }: Props) {
       />
       <ul className="flex flex-wrap justify-center gap-4">
         {filteredListProducts.map((prod) => (
-          <li key={prod.id} className="grow shrink basis-44 md:grow-0">
+          <li key={Math.random()} className="grow shrink basis-44 md:grow-0">
 
             <div className="rounded-md bg-white">
               <div className="h-28 rounded-t-md border-b-4 border-red-500 p-2 flex items-center justify-center">

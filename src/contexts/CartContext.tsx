@@ -22,7 +22,8 @@ export const PurchasedProductsProvider = ({ children }: { children: React.ReactN
     const productsInLocalStorage = getFromLocalStorage('cart')
     const productsLocal = productsInLocalStorage.some(prod => prod.id === product.id)
     if (!productsLocal) {
-      addToLocalStorage([...productsInLocalStorage, product])
+      productsInLocalStorage.push(product)
+      addToLocalStorage(productsInLocalStorage)
       const itemsInLocalStorage = getFromLocalStorage('cart')
       setPurchasedProducts(itemsInLocalStorage)
       toast('Adicionado ao carinho')
