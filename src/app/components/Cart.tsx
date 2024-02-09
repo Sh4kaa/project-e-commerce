@@ -61,7 +61,7 @@ export default function Cart() {
               <div className="flex justify-between">
                 <div className="flex">
                   <Minus
-                    className="bg-red-600 rounded"
+                    className="bg-red-600 rounded cursor-pointer hover:bg-red-500"
                     color="white"
                     width={22}
                     height={22}
@@ -71,14 +71,14 @@ export default function Cart() {
                     {prod.quantity}
                   </span>
                   <Plus
-                    className="bg-red-600 rounded"
+                    className="bg-red-600 rounded cursor-pointer hover:bg-red-500"
                     color="white"
                     width={22}
                     height={22}
                     onClick={() => handleQuantityChange(prod.id, "increase")}
                   />
                 </div>
-                <Trash2 className="bg-red-600 py-1 rounded" height={25} color="white" onClick={() => removeToCart(prod.id)} />
+                <Trash2 className="bg-red-600 py-1 rounded cursor-pointer hover:bg-red-500" height={25} color="white" onClick={() => removeToCart(prod.id)} />
               </div>
             </div>
 
