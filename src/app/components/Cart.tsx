@@ -55,7 +55,7 @@ export default function Cart() {
   }
 
   return (
-    <section className="h-[500px] overflow-y-auto md:overflow-visible md:flex md:h-full md:items-center md:justify-center">
+    <section className="h-[400px] overflow-y-auto md:overflow-visible md:flex md:h-full md:items-center md:justify-center">
       <div className="flex flex-wrap gap-2 justify-center content-start">
         {purchasedProducts.map((prod) => (
           <div key={prod.id} className="bg-white grow shrink basis-72 max-w-[310px] flex rounded overflow-hidden pl-2 py-2 h-[130px]" >

@@ -44,7 +44,7 @@ export default function Product({ children }: Props) {
 
   }
 
-  console.log(listProducts)
+
 
   return (
     <>
