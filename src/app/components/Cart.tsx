@@ -41,11 +41,21 @@ export default function Cart() {
   }
 
   if (!purchasedProducts.length) {
-    return <p className="text-center">Carrinho vazio 😥</p>;
+    return (
+      <section>
+        <p className="text-center">Carrinho vazio 😥</p>
+        <div className="absolute -z-10 bg-red-600 w-full h-1/3 bottom-0 left-0 ">
+          <span className="block text-center mt-3">
+            <strong>Total: </strong>
+            {sum}
+          </span>
+        </div>
+      </section>
+    )
   }
 
   return (
-    <section className="">
+    <section className="h-[500px] overflow-y-auto">
       <div className="flex flex-wrap gap-2 justify-center">
         {purchasedProducts.map((prod) => (
           <div key={prod.id} className="bg-white grow shrink basis-72 max-w-[310px] flex rounded overflow-hidden pl-2 py-2 h-[130px]" >
@@ -86,10 +96,14 @@ export default function Cart() {
           </div>
         ))}
       </div>
-      <span className="block text-center mt-3">
-        <strong>Total: </strong>
-        {sum}
-      </span>
+      <div className="absolute z-10 bg-red-600 w-full h-1/3 bottom-0 left-0 ">
+        <span className="text-center mt-3 text-2xl flex flex-col">
+          <strong className="font-normal">Total: </strong>
+          <span className="font-extrabold text-4xl">
+            {sum}
+          </span>
+        </span>
+      </div>
     </section >
   );
 }
