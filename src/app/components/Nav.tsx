@@ -46,7 +46,7 @@ export default function Nav() {
         <li>
           <ActiveLink href="/about">Sobre</ActiveLink>
         </li>
-        <li>
+        <li className="w-[60px]">
           <Link
             className="flex relative py-2 px-4 hover:bg-red-500 hover:text-black rounded duration-300 focus:bg-red-500"
             href="/cart"

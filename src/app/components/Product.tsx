@@ -29,7 +29,6 @@ export default function Product({ children }: Props) {
 
   function handleAddToCart(product: TypeProducts) {
     product = { ...product, quantity: 1, addedToCart: true }
-    console.log(product)
     addToCart(product)
     //peganod items do carrinho
     const itemsInCart = getFromLocalStorage('cart')
@@ -41,11 +40,7 @@ export default function Product({ children }: Props) {
         return isProductInCart
       } else { return item }
     }))
-
   }
-
-
-
   return (
     <>
       <input
