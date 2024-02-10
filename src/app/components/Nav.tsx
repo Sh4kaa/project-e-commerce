@@ -41,9 +41,6 @@ export default function Nav() {
           <ActiveLink href="/">Home</ActiveLink>
         </li>
         <li>
-          <ActiveLink href="/products">Produtos</ActiveLink>
-        </li>
-        <li>
           <ActiveLink href="/about">Sobre</ActiveLink>
         </li>
         <li className="w-[60px]">

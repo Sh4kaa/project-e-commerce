@@ -1,14 +1,22 @@
+import { getData } from "@/api/fetchProducts";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import Product from "./components/Product";
 
 export const metadata: Metadata = {
   title: "Home 😊",
 };
 
-export default function Home() {
+export default async function Home() {
+  const productApi = await getData()
+  const products = productApi.map(prod => ({ ...prod, quantity: 1 }))
   return (
     <>
-      <h1 className="text-center">Pagina Home</h1>
-      <p className="text-center">Este site é um protótipo de um e-commerce</p>
+      <Suspense fallback={<p>Carregando...</p>}>
+        <Product>
+          {products}
+        </Product>
+      </Suspense>
     </>
   );
 }

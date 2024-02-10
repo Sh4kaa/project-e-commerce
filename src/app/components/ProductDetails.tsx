@@ -58,7 +58,7 @@ export default function ProductDetails({ product }: { product: TypeProducts }) {
 
         <Link
           className="block bg-red-600 py-3 sm:py-5 md:py-4 rounded w-full text-center sm:text-2xl font-bold hover:text-white duration-500"
-          href={"/products"}
+          href="/"
         >
           CONTINUAR COMPRANDO
         </Link>
