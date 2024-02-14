@@ -4,7 +4,9 @@
 - Foi utilizado também uma api para consumo dos dados https://fakestoreapi.com/products
 
 ### Tecnologias
-  [![My Skills](https://skillicons.dev/icons?i=next,tailwind)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=next,tailwind,typescript)](https://skillicons.dev)
+
+Utilizei NextJS como framework e para estlização tailwindcss e JS com TS
 
 
 ### Como iniciar o projeto
