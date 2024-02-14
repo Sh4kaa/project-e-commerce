@@ -31,3 +31,5 @@ https://project-e-commerce-dario.vercel.app/
 ![image](https://github.com/Sh4kaa/project-e-commerce/assets/27507717/97e8fa0d-2dfc-4b7e-b871-df2ed98487b5)
 ![image](https://github.com/Sh4kaa/project-e-commerce/assets/27507717/34b640de-abc5-42e8-ba7b-bdb35dc40085)
 ![image](https://github.com/Sh4kaa/project-e-commerce/assets/27507717/94e23bb6-bd49-4093-9fc4-fba7618526c2)
+![image](https://github.com/Sh4kaa/project-e-commerce/assets/27507717/de08c693-7dbd-45fb-931c-d9c7000cd20f)
+
